@@ -5,26 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Neura — Psicología Contemporánea</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="styles/styles.css">
   <link rel="icon" type="image/png" href="images/logo_sinFondo.png">
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
+<nav id="navbar">
   <div class="logo">
     <img src="images/logo_sinFondo.png" alt="Neura" class="logo-img">
   </div>
-  <ul>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#enfoque">Enfoque</a></li>
-    <li><a href="#quiensoy">Quién soy</a></li>
+  <ul class="nav-links">
+    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+    <li><a href="#enfoque" class="nav-link">Enfoque</a></li>
+    <li><a href="#quiensoy" class="nav-link">Quién soy</a></li>
+    <li><a href="#precios" class="nav-link">Precios</a></li>
     <li><a href="#reserva" class="nav-cta">Reservar sesión</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#servicios" class="mobile-link">Servicios</a>
+  <a href="#enfoque" class="mobile-link">Enfoque</a>
+  <a href="#quiensoy" class="mobile-link">Quién soy</a>
+  <a href="#precios" class="mobile-link">Precios</a>
+  <a href="#reserva" class="mobile-link mobile-cta">Reservar sesión</a>
+</div>
+
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="hero">
   <div class="hero-left">
     <p class="hero-tag">Psicología contemporánea online</p>
     <h1>Un espacio para<br><em>comprenderte</em><br>y crecer.</h1>
@@ -37,15 +51,25 @@
   <div class="hero-right">
     <div class="hero-visual">
       <div class="hero-shape"></div>
-      <div class="hero-quote">
-        <blockquote>
-          "Quien mira hacia afuera sueña; quien mira hacia adentro despierta."
-        </blockquote>
-        <cite>— Carl Gustav Jung</cite>
+      <div class="hero-carousel">
+        <div class="hero-quote active">
+          <blockquote>"Quien mira hacia afuera sueña; quien mira hacia adentro despierta."</blockquote>
+          <cite>— Carl Gustav Jung</cite>
+        </div>
+        <div class="hero-quote">
+          <blockquote>"El curioso paradoja es que cuando me acepto tal como soy, entonces puedo cambiar."</blockquote>
+          <cite>— Carl Rogers</cite>
+        </div>
+        <div class="hero-quote">
+          <blockquote>"Entre el estímulo y la respuesta hay un espacio. En ese espacio reside nuestra libertad."</blockquote>
+          <cite>— Viktor Frankl</cite>
+        </div>
       </div>
     </div>
     <div class="hero-dots">
-      <span></span><span></span><span></span>
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
     </div>
   </div>
 </section>
@@ -53,15 +77,15 @@
 <!-- STATS -->
 <div class="stats-bar">
   <div class="stat-item">
-    <span class="stat-num">+800</span>
+    <span class="stat-num" data-target="800" data-prefix="+">0</span>
     <p class="stat-label">Personas acompañadas</p>
   </div>
   <div class="stat-item">
-    <span class="stat-num">100%</span>
+    <span class="stat-num" data-target="100" data-suffix="%">0</span>
     <p class="stat-label">Sesiones online</p>
   </div>
   <div class="stat-item">
-    <span class="stat-num">3</span>
+    <span class="stat-num" data-target="3">0</span>
     <p class="stat-label">Modalidades terapéuticas</p>
   </div>
 </div>
@@ -73,26 +97,186 @@
   <p class="section-sub">Cada persona llega con una historia única. Nuestros servicios se adaptan a lo que necesitas, ya sea en solitario, en pareja o ante una encrucijada vital.</p>
 
   <div class="services-grid">
-    <div class="service-card">
+
+    <div class="service-card gsap-reveal" onclick="openModal('individual')">
       <div class="service-icon">🌱</div>
       <h3 class="service-name">Terapia Individual</h3>
       <p class="service-desc">Un espacio privado y seguro para explorar patrones emocionales, gestionar la ansiedad o la depresión, y desarrollar recursos internos duraderos.</p>
       <span class="service-detail">Ver detalles</span>
     </div>
-    <div class="service-card">
+    <div class="service-card gsap-reveal" onclick="openModal('parejas')">
       <div class="service-icon">🔗</div>
       <h3 class="service-name">Terapia de Parejas</h3>
       <p class="service-desc">Trabajamos los vínculos afectivos, los patrones de comunicación y los conflictos relacionales para que la relación florezca desde un lugar más honesto.</p>
       <span class="service-detail">Ver detalles</span>
     </div>
-    <div class="service-card">
+    <div class="service-card gsap-reveal" onclick="openModal('crisis')">
       <div class="service-icon">⚡</div>
       <h3 class="service-name">Orientación en Crisis</h3>
       <p class="service-desc">Cuando la vida cambia de golpe —duelo, separación, burnout, cambio vital— ofrecemos contención rápida y herramientas concretas para atravesar la tormenta.</p>
       <span class="service-detail">Ver detalles</span>
     </div>
+
   </div>
 </section>
+
+<!-- MODALES -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+  <div class="modal" id="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- MODALES DATA -->
+<template id="modal-individual">
+  <div class="modal-icon">🌱</div>
+  <p class="modal-tag">Terapia Individual</p>
+  <h2 class="modal-title">Un espacio solo <em>para ti</em></h2>
+
+  <div class="modal-block">
+    <h4>¿Para quién está indicado?</h4>
+    <ul>
+      <li>Ansiedad, estrés o agotamiento emocional</li>
+      <li>Depresión o estado de ánimo bajo persistente</li>
+      <li>Baja autoestima o dificultad para tomar decisiones</li>
+      <li>Duelos, pérdidas o cambios vitales importantes</li>
+      <li>Dificultades en relaciones personales o laborales</li>
+      <li>Deseo de autoconocimiento y crecimiento personal</li>
+    </ul>
+  </div>
+
+  <div class="modal-block">
+    <h4>¿Cómo es una sesión típica?</h4>
+    <p>Cada sesión es un espacio confidencial donde explores lo que te ocupa. Comenzamos revisando cómo ha ido la semana, trabajamos sobre los temas que emergen —con técnicas de TCC, ACT o mindfulness según el momento— y cerramos con algo concreto que llevarte.</p>
+  </div>
+
+  <div class="modal-block modal-row">
+    <div>
+      <h4>Duración</h4>
+      <p>50 minutos por sesión</p>
+    </div>
+    <div>
+      <h4>Frecuencia recomendada</h4>
+      <p>Semanal o quincenal según el proceso</p>
+    </div>
+  </div>
+
+  <div class="modal-precio-box">
+    <span class="modal-precio">60€ <small>/ sesión</small></span>
+    <a href="#reserva" class="precio-btn" onclick="closeModal()">Reservar sesión →</a>
+  </div>
+</template>
+
+<template id="modal-parejas">
+  <div class="modal-icon">🔗</div>
+  <p class="modal-tag">Terapia de Parejas</p>
+  <h2 class="modal-title">Construir desde <em>la honestidad</em></h2>
+
+  <div class="modal-block">
+    <h4>¿Para quién está indicado?</h4>
+    <ul>
+      <li>Conflictos repetitivos sin resolución</li>
+      <li>Dificultades en la comunicación o la escucha</li>
+      <li>Crisis de pareja tras infidelidad o ruptura de confianza</li>
+      <li>Distanciamiento emocional o afectivo</li>
+      <li>Parejas que quieren crecer juntas de forma consciente</li>
+      <li>Transiciones vitales: hijos, cambios laborales, convivencia</li>
+    </ul>
+  </div>
+
+  <div class="modal-block">
+    <h4>¿Cómo es una sesión típica?</h4>
+    <p>Las sesiones de pareja crean un espacio seguro donde ambos puedan ser escuchados sin juicio. Se trabajan los patrones de comunicación, las necesidades no expresadas y las dinámicas relacionales que generan conflicto, con herramientas de terapia sistémica y Gottman.</p>
+  </div>
+
+  <div class="modal-block modal-row">
+    <div>
+      <h4>Duración</h4>
+      <p>60 minutos por sesión</p>
+    </div>
+    <div>
+      <h4>Frecuencia recomendada</h4>
+      <p>Semanal las primeras semanas, luego quincenal</p>
+    </div>
+  </div>
+
+  <div class="modal-precio-box">
+    <span class="modal-precio">75€ <small>/ sesión</small></span>
+    <a href="#reserva" class="precio-btn" onclick="closeModal()">Reservar sesión →</a>
+  </div>
+</template>
+
+<template id="modal-crisis">
+  <div class="modal-icon">⚡</div>
+  <p class="modal-tag">Orientación en Crisis</p>
+  <h2 class="modal-title">Apoyo cuando más <em>lo necesitas</em></h2>
+
+  <div class="modal-block">
+    <h4>¿Para quién está indicado?</h4>
+    <ul>
+      <li>Duelo reciente por pérdida de un ser querido</li>
+      <li>Separación o divorcio</li>
+      <li>Burnout o colapso por estrés laboral</li>
+      <li>Crisis de identidad o etapa vital de cambio</li>
+      <li>Diagnóstico médico propio o de un familiar</li>
+      <li>Situaciones de emergencia emocional</li>
+    </ul>
+  </div>
+
+  <div class="modal-block">
+    <h4>¿Cómo es una sesión típica?</h4>
+    <p>Las primeras sesiones se centran en la contención y estabilización emocional. A partir de ahí trabajamos con herramientas concretas para recuperar el equilibrio: técnicas de regulación emocional, reestructuración cognitiva y plan de acción adaptado al momento.</p>
+  </div>
+
+  <div class="modal-block modal-row">
+    <div>
+      <h4>Duración</h4>
+      <p>50 minutos por sesión</p>
+    </div>
+    <div>
+      <h4>Frecuencia recomendada</h4>
+      <p>Intensiva al inicio (2 por semana), luego semanal</p>
+    </div>
+  </div>
+
+  <div class="modal-precio-box">
+    <span class="modal-precio">60€ <small>/ sesión</small></span>
+    <a href="#reserva" class="precio-btn" onclick="closeModal()">Reservar sesión →</a>
+  </div>
+</template>
+
+<template id="modal-privacidad">
+  <div class="modal-icon">🔒</div>
+  <p class="modal-tag">Legal</p>
+  <h2 class="modal-title">Política de <em>Privacidad</em></h2>
+
+  <div class="modal-block">
+    <h4>Responsable del tratamiento</h4>
+    <p>Laura Alonso Villanueva — Neura Psicología. Contacto: lavpsicologia00@gmail.com
+</p>
+  </div>
+
+  <div class="modal-block">
+    <h4>¿Qué datos recogemos?</h4>
+    <p>Nombre, apellidos, email, teléfono y la información que compartes voluntariamente en el formulario de contacto. No se recogen datos sin tu consentimiento expreso.</p>
+  </div>
+
+  <div class="modal-block">
+    <h4>¿Para qué los usamos?</h4>
+    <p>Únicamente para gestionar tu solicitud de cita y mantenerte informado sobre el estado de la misma. No se ceden datos a terceros ni se usan con fines comerciales.</p>
+  </div>
+
+  <div class="modal-block">
+    <h4>Confidencialidad clínica</h4>
+    <p>Toda la información compartida en las sesiones está protegida por el secreto profesional, conforme al Código Deontológico del Psicólogo y la normativa vigente.</p>
+  </div>
+
+  <div class="modal-block">
+    <h4>Tus derechos</h4>
+    <p>Tienes derecho a acceder, rectificar y suprimir tus datos en cualquier momento escribiendo a lavpsicologia00@gmail.com. Cumplimos con el Reglamento General de Protección de Datos (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).</p>
+  </div>
+</template>
 
 <!-- APPROACH -->
 <section class="approach" id="enfoque">
@@ -132,9 +316,9 @@
       <img src="images/logo_sinFondo.png" alt="Neura — Laura Alonso" class="qs-logo-display">
     </div>
     <div class="qs-contact-card">
-      <p class="qs-contact-item">📧 lauraalonsovillanueva@gmail.com</p>
-      <p class="qs-contact-item">📞 616 472 470</p>
-      <a class="qs-contact-item qs-linkedin" href="https://www.linkedin.com/in/laura-alonso-villanueva-529042247/" target="_blank">En LinkedIn</a>
+      <p class="qs-contact-item">📧 lavpsicologia00@gmail.com </p>
+      <p class="qs-contact-item">📞 +34 616 472 470</p>
+      <a class="qs-contact-item qs-linkedin" href="https://www.linkedin.com/in/laura-alonso-villanueva-52G042247/?locale=es_ES" target="_blank">LinkedIn</a>
     </div>
   </div>
 
@@ -150,7 +334,7 @@
       He trabajado en entornos clínicos hospitalarios, centros educativos y servicios sociales, con población adulta, infanto-juvenil y personas con trastornos del desarrollo. Creo que el cambio real ocurre desde el vínculo terapéutico, no solo desde la técnica.
     </p>
 
-    <div class="qs-tags-section">
+    <div class="qs-tags-section gsap-reveal">
       <p class="qs-tags-label">Formación</p>
       <div class="qs-tags">
         <span class="qs-tag">Máster Psicología General Sanitaria · UNIR</span>
@@ -161,7 +345,7 @@
       </div>
     </div>
 
-    <div class="qs-tags-section">
+    <div class="qs-tags-section gsap-reveal">
       <p class="qs-tags-label">Especialidades</p>
       <div class="qs-tags">
         <span class="qs-tag accent">TCC</span>
@@ -175,20 +359,158 @@
     </div>
 
     <div class="qs-exp-grid">
-      <div class="qs-exp-item">
+      <div class="qs-exp-item gsap-reveal">
         <span class="qs-exp-where">Hospital Virgen de la Luz</span>
         <span class="qs-exp-what">Evaluación clínica, consulta de transexualidad, intervención grupal en UME (2023 y 2025)</span>
       </div>
-      <div class="qs-exp-item">
+      <div class="qs-exp-item gsap-reveal">
         <span class="qs-exp-where">Colegio Villamadrid</span>
         <span class="qs-exp-what">Evaluación infanto-juvenil, atención al alumnado con TEA, talleres socioeducativos (2022 y 2024)</span>
       </div>
-      <div class="qs-exp-item">
+      <div class="qs-exp-item gsap-reveal">
         <span class="qs-exp-where">Ayuntamiento de Cuenca</span>
         <span class="qs-exp-what">Intervención individual con mujeres víctimas de violencia de género e informes para procesos judiciales</span>
       </div>
     </div>
   </div>
+</section>
+
+<!-- PRECIOS -->
+<section class="precios section" id="precios">
+  <p class="section-label">Tarifas</p>
+  <h2 class="section-title">Transparencia<br>desde el <em>primer día</em></h2>
+  <p class="section-sub">Sin letra pequeña. Elige el formato que mejor se adapta a tu momento.</p>
+
+  <!-- TABS -->
+  <div class="precio-tabs">
+    <button class="precio-tab active" onclick="switchTab(this, 'sesiones')">Por sesión</button>
+    <button class="precio-tab" onclick="switchTab(this, 'bonos')">Bonos</button>
+  </div>
+
+  <!-- TAB: SESIONES -->
+  <div class="precio-content active" id="tab-sesiones">
+    <div class="precio-grid">
+
+      <div class="precio-card gsap-reveal">
+        <div class="precio-header">
+          <span class="precio-icon">🌱</span>
+          <h3 class="precio-nombre">Terapia Individual</h3>
+          <p class="precio-desc">Sesión individual de 50 minutos por videollamada</p>
+        </div>
+        <div class="precio-amount">
+          <span class="precio-num">60€</span>
+          <span class="precio-per">/ sesión</span>
+        </div>
+        <ul class="precio-features">
+          <li>50 minutos de sesión</li>
+          <li>Videollamada segura</li>
+          <li>Resumen y recursos post-sesión</li>
+          <li>Cancelación con 24h de antelación</li>
+        </ul>
+        <a href="#reserva" class="precio-btn">Reservar sesión</a>
+      </div>
+
+      <div class="precio-card featured gsap-reveal">
+        <div class="precio-badge">Más solicitado</div>
+        <div class="precio-header">
+          <span class="precio-icon">🔗</span>
+          <h3 class="precio-nombre">Terapia de Parejas</h3>
+          <p class="precio-desc">Sesión conjunta de 60 minutos por videollamada</p>
+        </div>
+        <div class="precio-amount">
+          <span class="precio-num">75€</span>
+          <span class="precio-per">/ sesión</span>
+        </div>
+        <ul class="precio-features">
+          <li>60 minutos de sesión</li>
+          <li>Videollamada segura</li>
+          <li>Plan de trabajo conjunto</li>
+          <li>Cancelación con 24h de antelación</li>
+        </ul>
+        <a href="#reserva" class="precio-btn">Reservar sesión</a>
+      </div>
+
+      <div class="precio-card gsap-reveal">
+        <div class="precio-header">
+          <span class="precio-icon">⚡</span>
+          <h3 class="precio-nombre">Orientación en Crisis</h3>
+          <p class="precio-desc">Sesión de atención urgente de 50 minutos</p>
+        </div>
+        <div class="precio-amount">
+          <span class="precio-num">60€</span>
+          <span class="precio-per">/ sesión</span>
+        </div>
+        <ul class="precio-features">
+          <li>50 minutos de sesión</li>
+          <li>Disponibilidad preferente</li>
+          <li>Plan de contención inmediata</li>
+          <li>Seguimiento post-sesión</li>
+        </ul>
+        <a href="#reserva" class="precio-btn">Reservar sesión</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TAB: BONOS -->
+  <div class="precio-content" id="tab-bonos">
+    <div class="precio-grid bonos-grid">
+
+      <div class="precio-card gsap-reveal">
+        <div class="precio-header">
+          <span class="precio-icon">✦</span>
+          <h3 class="precio-nombre">Bono 5 sesiones</h3>
+          <p class="precio-desc">Para quienes quieren comprometerse con su proceso</p>
+        </div>
+        <div class="precio-amount">
+          <span class="precio-num">270€</span>
+          <span class="precio-per">bono completo</span>
+        </div>
+        <div class="precio-ahorro">Ahorras 30€ respecto al precio por sesión</div>
+        <ul class="precio-features">
+          <li>5 sesiones de 50 minutos</li>
+          <li>Validez de 3 meses</li>
+          <li>Plan terapéutico personalizado</li>
+          <li>Flexibilidad de horario</li>
+        </ul>
+        <a href="#reserva" class="precio-btn">Contratar bono</a>
+      </div>
+
+      <div class="precio-card featured gsap-reveal">
+        <div class="precio-badge">Mejor valor</div>
+        <div class="precio-header">
+          <span class="precio-icon">✦✦</span>
+          <h3 class="precio-nombre">Bono 10 sesiones</h3>
+          <p class="precio-desc">El mayor compromiso con tu bienestar</p>
+        </div>
+        <div class="precio-amount">
+          <span class="precio-num">500€</span>
+          <span class="precio-per">bono completo</span>
+        </div>
+        <div class="precio-ahorro">Ahorras 100€ respecto al precio por sesión</div>
+        <ul class="precio-features">
+          <li>10 sesiones de 50 minutos</li>
+          <li>Validez de 6 meses</li>
+          <li>Plan terapéutico completo</li>
+          <li>Prioridad en la agenda</li>
+        </ul>
+        <a href="#reserva" class="precio-btn">Contratar bono</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FORMAS DE PAGO -->
+  <div class="pago-metodos">
+    <p class="pago-label">Formas de pago aceptadas</p>
+    <div class="pago-icons">
+      <div class="pago-item">💳 Tarjeta</div>
+      <div class="pago-item">📱 Bizum</div>
+      <div class="pago-item">🏦 Transferencia</div>
+    </div>
+    <p class="pago-nota">El pago se realiza antes de cada sesión. Cancelaciones con menos de 24h de antelación no serán reembolsadas.</p>
+  </div>
+
 </section>
 
 <!-- BOOKING -->
@@ -198,21 +520,21 @@
     <h2 class="section-title">El primer paso<br>es <em>decidir</em><br>darlo.</h2>
     <p class="section-sub">Rellena el formulario y nos pondremos en contacto en menos de 24 horas para confirmar tu cita.</p>
 
-    <div class="info-item">
+    <div class="info-item gsap-reveal">
       <div class="info-icon">🔒</div>
       <div>
         <p class="info-label">Confidencialidad total</p>
         <p class="info-text">Todas las sesiones se realizan bajo estricta confidencialidad y cumpliendo la normativa RGPD.</p>
       </div>
     </div>
-    <div class="info-item">
+    <div class="info-item gsap-reveal">
       <div class="info-icon">💻</div>
       <div>
         <p class="info-label">100% online</p>
         <p class="info-text">Desde donde estés, sin desplazamientos. Compatible con tu ritmo de vida.</p>
       </div>
     </div>
-    <div class="info-item">
+    <div class="info-item gsap-reveal">
       <div class="info-icon">🔄</div>
       <div>
         <p class="info-label">Flexibilidad horaria</p>
@@ -227,23 +549,23 @@
 
     <div class="form-row">
       <div class="form-group">
-        <label>Nombre</label>
-        <input type="text" placeholder="Tu nombre">
+        <label for="input-nombre">Nombre</label>
+        <input id="input-nombre" type="text" placeholder="Tu nombre">
       </div>
       <div class="form-group">
-        <label>Apellidos</label>
-        <input type="text" placeholder="Tus apellidos">
+        <label for="input-apellidos">Apellidos</label>
+        <input id="input-apellidos" type="text" placeholder="Tus apellidos">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="tu@email.com">
+        <label for="input-email">Email</label>
+        <input id="input-email" type="email" placeholder="tu@email.com">
       </div>
       <div class="form-group">
-        <label>Teléfono</label>
-        <input type="tel" placeholder="+34 000 000 000">
+        <label for="input-telefono">Teléfono</label>
+        <input id="input-telefono" type="tel" placeholder="+34 000 000 000">
       </div>
     </div>
 
@@ -258,31 +580,37 @@
 
     <div class="form-row">
       <div class="form-group">
-        <label>Disponibilidad</label>
-        <select>
+        <label for="input-fecha">Fecha preferida</label>
+        <input id="input-fecha" type="text" placeholder="Selecciona una fecha" readonly>
+      </div>
+      <div class="form-group">
+        <label for="input-disponibilidad">Horario preferido</label>
+        <select id="input-disponibilidad">
           <option>Mañanas (9h–13h)</option>
           <option>Tardes (16h–20h)</option>
           <option>Noche (20h–22h)</option>
           <option>Fin de semana</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>Cómo nos conociste</label>
-        <select>
-          <option>Búsqueda online</option>
-          <option>Recomendación</option>
-          <option>Redes sociales</option>
-          <option>Otro</option>
-        </select>
-      </div>
     </div>
 
     <div class="form-group">
-      <label>Cuéntanos brevemente (opcional)</label>
-      <textarea placeholder="¿Qué te ha traído hasta aquí? Puedes escribir lo que necesites..."></textarea>
+      <label for="input-mensaje">Cuéntanos brevemente (opcional)</label>
+      <textarea id="input-mensaje" placeholder="¿Qué te ha traído hasta aquí? Puedes escribir lo que necesites..."></textarea>
     </div>
 
-    <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">Solicitar primera consulta →</button>
+    <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+      <span id="btn-text">Solicitar primera consulta →</span>
+      <span id="btn-loading" style="display:none">Enviando...</span>
+    </button>
+
+    <div id="form-success" class="form-success" style="display:none">
+      <span class="success-icon">✓</span>
+      <p>¡Solicitud enviada! Laura se pondrá en contacto contigo en menos de 24 horas.</p>
+    </div>
+    <div id="form-error" class="form-error" style="display:none">
+      <p>Hubo un problema al enviar. Escríbenos directamente a <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6b070a1e190a0a07040518041d0207070a051e0e1d0a2b0c060a020745080406">[email&#160;protected]</a></strong></p>
+    </div>
   </div>
 </section>
 
@@ -291,17 +619,17 @@
   <p class="section-label">Experiencias</p>
   <h2 class="section-title">Lo que dicen<br>quienes han <em>confiado</em></h2>
   <div class="testimonials-grid">
-    <div class="testimonial-card">
+    <div class="testimonial-card gsap-reveal">
       <p class="t-text">Empecé con mucho escepticismo y poca esperanza. La terapia individual con Neura me ha dado herramientas que siguen funcionando mucho después de cada sesión.</p>
       <p class="t-author">Laura M.</p>
       <p class="t-service">Terapia individual · 8 meses</p>
     </div>
-    <div class="testimonial-card">
+    <div class="testimonial-card gsap-reveal">
       <p class="t-text">Llegamos como pareja al límite. Lo que más valoramos es que el proceso fue honesto, sin rodeos, y con espacio real para escucharnos el uno al otro.</p>
       <p class="t-author">Carlos y Marta R.</p>
       <p class="t-service">Terapia de parejas · 5 meses</p>
     </div>
-    <div class="testimonial-card">
+    <div class="testimonial-card gsap-reveal">
       <p class="t-text">Pedí ayuda en un momento de crisis laboral y personal. El acompañamiento fue inmediato, cálido y muy profesional. Sentí que no estaba sola.</p>
       <p class="t-author">Sofía T.</p>
       <p class="t-service">Orientación en crisis · 3 sesiones</p>
@@ -312,25 +640,26 @@
 <!-- FOOTER -->
 <footer>
   <div>
-    <div class="footer-logo"><img src="images/logo_sinFondo.png" alt="Neura" class="footer-logo-img"></div>
+    <div class="footer-logo">
+      <img src="images/logo_sinFondo.png" alt="Neura" class="footer-logo-img">
+    </div>
     <p class="footer-desc">Psicología contemporánea online. Integrando lo mejor de las tradiciones clásicas y las nuevas perspectivas terapéuticas.</p>
   </div>
   <div class="footer-col">
     <h4>Servicios</h4>
     <ul>
-      <li>Terapia individual</li>
-      <li>Terapia de parejas</li>
-      <li>Orientación en crisis</li>
-      <li>Consulta de orientación</li>
+      <li onclick="openModal('individual')">Terapia individual</li>
+      <li onclick="openModal('parejas')">Terapia de parejas</li>
+      <li onclick="openModal('crisis')">Orientación en crisis</li>
     </ul>
   </div>
   <div class="footer-col">
     <h4>Información</h4>
     <ul>
-      <li>Nuestro enfoque</li>
-      <li>El equipo</li>
-      <li>Preguntas frecuentes</li>
-      <li>Política de privacidad</li>
+      <li onclick="location.href='#enfoque'">Nuestro enfoque</li>
+      <li onclick="location.href='#quiensoy'">El equipo</li>
+      <li onclick="location.href='#reserva'">Preguntas frecuentes</li>
+      <li onclick="openModal('privacidad')">Política de privacidad</li>
     </ul>
   </div>
 </footer>
@@ -339,6 +668,11 @@
   <p>Colegiados y adheridos al código ético del COP</p>
 </div>
 
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="main/main.js"></script>
 </body>
-</html>
+</html
